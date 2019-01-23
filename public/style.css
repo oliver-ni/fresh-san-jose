@@ -1,3 +1,7 @@
+body.has-navbar-fixed-top {
+    padding-top: 4rem;
+}
+
 body, button, input, select, textarea {
     font-family: "Avenir", sans-serif;
 }
@@ -11,12 +15,12 @@ body, button, input, select, textarea {
 }
 
 .has-text-shadow {
-    text-shadow: 0 0 2rem rgba(0, 0, 0, 0.6);
+    text-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
 }
 
 .button {
     border: none;
-    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
     text-transform: uppercase;
     font-size: 0.9rem;
     padding: 1.8rem;

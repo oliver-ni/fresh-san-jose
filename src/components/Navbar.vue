@@ -31,6 +31,13 @@
 
 <style scoped>
 .navbar {
-    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
+    height: 4rem;
+}
+.navbar-item,
+.navbar-link {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.3rem;
 }
 </style>
