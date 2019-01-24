@@ -35,7 +35,7 @@
                         <div class="columns is-multiline has-text-centered">
                             <div class="column is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd" v-for="product in products" :key="product.id">
                                 <div class="product">
-                                    <div class="product-image has-background-success"></div>
+                                    <div class="product-image has-background-primary"></div>
                                     <span class="product-name">{{ product.name }}</span>
                                     <span class="product-price">{{ formatPrice(product.price) }} / {{ product.qty_label }}</span>
                                 </div>
