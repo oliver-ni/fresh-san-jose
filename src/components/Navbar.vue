@@ -12,7 +12,6 @@
             </div>
             <div class="navbar-menu">
                 <div class="navbar-start">
-                    <router-link class="navbar-item" active-class="is-active" to="/about">About</router-link>
                     <router-link class="navbar-item" active-class="is-active" to="/shop">Shop</router-link>
                     <router-link class="navbar-item" active-class="is-active" to="/merchants">Merchants</router-link>
                 </div>

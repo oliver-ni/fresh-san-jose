@@ -18,11 +18,6 @@ export default new Router({
             component: Home,
         },
         {
-            path: '/about',
-            name: 'about',
-            component: About,
-        },
-        {
             path: '/shop/category/:category',
             name: 'category',
             component: Shop,
