@@ -1,7 +1,9 @@
 <template>
     <div id="app">
         <Navbar></Navbar>
-        <router-view/>
+        <transition name="fade">
+            <router-view/>
+        </transition>
     </div>
 </template>
 
@@ -176,6 +178,19 @@ body.has-navbar-fixed-top {
 
 .container-small {
     max-width: 960px;
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition-property: opacity;
+    transition-duration: .25s;
+}
+
+.fade-enter-active {
+    transition-delay: .25s;
+}
+
+.fade-enter, .fade-leave-active {
+    opacity: 0
 }
 
 </style>

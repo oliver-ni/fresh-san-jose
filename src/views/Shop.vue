@@ -15,7 +15,7 @@
                             <div class="column category-filter is-full-tablet is-half-mobile">
                                 <h3 class="title is-5 category-heading">Categories</h3>
                                 <ul class="category-list">
-                                    <router-link tag="li" class="category" active-class="is-active" v-for="l_category in $store.state.categories" :key="l_category.id" :to="'/shop/category/' + l_category.name">
+                                    <router-link tag="li" class="category" active-class="is-active" v-for="l_category in $store.state.firebase.categories" :key="l_category.id" :to="'/shop/category/' + l_category.slug">
                                         <a>{{ l_category.name }}</a>
                                     </router-link>
                                 </ul>
@@ -23,7 +23,7 @@
                             <div class="column category-filter is-full-tablet is-half-mobile">
                                 <h3 class="title is-5 category-heading">Merchants</h3>
                                 <ul class="category-list">
-                                    <router-link tag="li" class="category" active-class="is-active" v-for="l_merchant in $store.state.merchants" :key="l_merchant.id" :to="'/shop/merchant/' + l_merchant.name">
+                                    <router-link tag="li" class="category" active-class="is-active" v-for="l_merchant in $store.state.firebase.merchants" :key="l_merchant.id" :to="'/shop/merchant/' + l_merchant.slug">
                                         <a>{{ l_merchant.name }}</a>
                                     </router-link>
                                 </ul>
@@ -33,17 +33,18 @@
 
                     <div class="column">
                         <div class="columns is-multiline has-text-centered">
-                            <div class="column is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd" v-for="product in products" :key="product.id">
+                            <div class="column is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd" v-for="id in productsToDisplay" :key="id">
                                 <div class="product">
                                     <div class="product-image has-background-primary"></div>
-                                    <span class="product-name">{{ product.name }}</span>
-                                    <span class="product-price">{{ formatPrice(product.price) }} / {{ product.qty_label }}</span>
+                                    <span class="product-name">{{ $store.getters.productsByKey[id].name }}</span>
+                                    <span class="product-price">{{ formatPrice($store.getters.productsByKey[id].price) }} / {{ $store.getters.productsByKey[id].qty_label }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <b-loading :active="!$store.state.dataIsLoaded" :is-full-page="false" />
         </section>
     </div>
 </template>
@@ -60,28 +61,27 @@ const formatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
 });
 
-@Component({
-    created() {
-        this.$store.dispatch('getShopData');
-    },
-    computed: {
-        products() {
-            if ('category' in this.$route.params) {
-                return this.$store.getters.productsByCategory[this.$route.params.category];
-            } else if ('merchant' in this.$route.params) {
-                return this.$store.getters.productsByMerchant[this.$route.params.merchant];
-            } else {
-                return this.$store.state.products;
-            }
-        },
-    },
-    methods: {
-        formatPrice(price) {
-            return formatter.format(price);
-        },
-    },
-})
+@Component
 export default class Shop extends Vue {
+
+    private created() {
+        this.$store.dispatch('getShopData');
+    }
+
+    private formatPrice(price: number) {
+        return formatter.format(price);
+    }
+
+    private get productsToDisplay() {
+        if ('category' in this.$route.params) {
+            return this.$store.getters.productsByCategory[this.$route.params.category];
+        } else if ('merchant' in this.$route.params) {
+            return this.$store.getters.productsByMerchant[this.$route.params.merchant];
+        } else {
+            return this.$store.getters.allProducts;
+        }
+    }
+
 }
 </script>
 

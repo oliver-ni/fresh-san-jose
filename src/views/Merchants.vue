@@ -6,7 +6,7 @@
             </div>
         </section>
 
-        <section class="section" v-for="merchant in $store.state.merchants" :key="merchant.id">
+        <section class="section" v-for="merchant in $store.state.firebase.merchants" :key="merchant.id">
             <div class="container container-small">
                 <div class="columns">
                     <div class="column is-one-third">
@@ -20,6 +20,7 @@
                     </div>
                 </div>
             </div>
+            <b-loading :active="!$store.state.dataIsLoaded" :is-full-page="false" />
         </section>
     </div>
 </template>
@@ -28,11 +29,12 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-@Component({
-    created() {
-        this.$store.dispatch('getShopData');
-    },
-})
+@Component
 export default class Merchants extends Vue {
+
+    private created() {
+        this.$store.dispatch('getShopData');
+    }
+
 }
 </script>
