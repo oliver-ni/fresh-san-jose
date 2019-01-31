@@ -15,6 +15,9 @@
                             <div class="column category-filter is-full-tablet is-half-mobile">
                                 <h3 class="title is-5 category-heading">Categories</h3>
                                 <ul class="category-list">
+                                    <router-link tag="li" class="category" exact-active-class="is-active" to="/shop">
+                                        <a>All Products</a>
+                                    </router-link>
                                     <router-link tag="li" class="category" active-class="is-active" v-for="l_category in $store.state.firebase.categories" :key="l_category.id" :to="'/shop/category/' + l_category.slug">
                                         <a>{{ l_category.name }}</a>
                                     </router-link>
@@ -31,17 +34,17 @@
                         </div>
                     </div>
 
-                    <div class="column">
-                        <div class="columns is-multiline has-text-centered">
-                            <div class="column is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd" v-for="id in productsToDisplay" :key="id">
-                                <div class="product">
-                                    <div class="product-image has-background-primary"></div>
-                                    <span class="product-name">{{ $store.getters.productsByKey[id].name }}</span>
-                                    <span class="product-price">{{ formatPrice($store.getters.productsByKey[id].price) }} / {{ $store.getters.productsByKey[id].qty_label }}</span>
+                        <div class="column">
+                            <div class="columns is-multiline has-text-centered">
+                                <div class="column is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd" v-for="id in productsToDisplay" :key="id">
+                                    <div class="product">
+                                        <div class="product-image has-background-primary"></div>
+                                        <span class="product-name">{{ $store.getters.productsByKey[id].name }}</span>
+                                        <span class="product-price">{{ formatPrice($store.getters.productsByKey[id].price) }} / {{ $store.getters.productsByKey[id].qty_label }}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
             <b-loading :active="!$store.state.dataIsLoaded" :is-full-page="false" />
