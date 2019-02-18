@@ -9,11 +9,12 @@ const moduleFirebase: Module<FirebaseState, RootState> =  {
         categories: [],
         merchants: [],
         products: [],
+        orders: [],
     },
     actions: {
         getShopData: firebaseAction(
             ({ bindFirebaseRef, unbindFirebaseRef, rootState }) => {
-                const db = firebase.db;
+                const db = firebase.firestore();
                 return Promise.all([
                     bindFirebaseRef('categories', db.collection('categories')),
                     bindFirebaseRef('merchants', db.collection('merchants')),
@@ -21,6 +22,14 @@ const moduleFirebase: Module<FirebaseState, RootState> =  {
                 ]).then(() => {
                     rootState.dataIsLoaded = true;
                 });
+            },
+        ),
+        getOrderData: firebaseAction(
+            ({ bindFirebaseRef, unbindFirebaseRef, rootState }) => {
+                const db = firebase.firestore();
+                return Promise.all([
+                    bindFirebaseRef('orders', db.collection('orders')),
+                ]);
             },
         ),
     },

@@ -4,7 +4,7 @@
             <div class="hero-body has-text-centered">
                 <div class="container">
                     <h1 class="title is-display-1 has-text-shadow">From the farm to your doorstep.</h1>
-                    <a class="button" href="/shop.php">Shop Now</a>
+                    <router-link class="button" to="/shop">Shop Now</router-link>
                 </div>
             </div>
         </section>

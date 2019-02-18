@@ -34,21 +34,55 @@
                         </div>
                     </div>
 
-                        <div class="column">
-                            <div class="columns is-multiline has-text-centered">
-                                <div class="column is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd" v-for="id in productsToDisplay" :key="id">
-                                    <div class="product">
-                                        <div class="product-image has-background-primary"></div>
-                                        <span class="product-name">{{ $store.getters.productsByKey[id].name }}</span>
-                                        <span class="product-price">{{ formatPrice($store.getters.productsByKey[id].price) }} / {{ $store.getters.productsByKey[id].qty_label }}</span>
-                                    </div>
+                    <div class="column">
+                        <div class="columns is-multiline has-text-centered">
+                            <div class="column is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd" v-for="id in productsToDisplay" :key="id">
+                                <div class="product">
+                                    <div class="product-image has-background-primary" @click="addToCart(id)"></div>
+                                    <span class="product-name">{{ $store.getters.productsByKey[id].name }}</span>
+                                    <span class="product-price">{{ formatPrice($store.getters.productsByKey[id].price) }} / {{ $store.getters.productsByKey[id].qty_label }}</span>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
             <b-loading :active="!$store.state.dataIsLoaded" :is-full-page="false" />
         </section>
+
+        <transition name="fade">
+            <div class="cart" v-if="$store.state.cart.length > 0">
+                <a class="button is-rounded is-black" v-if="!showCart" @click="toggleCart()">
+                    <span class="icon is-small">
+                        <i class="fas fa-shopping-basket"></i>
+                    </span>
+                </a>
+                <div class="box" v-if="showCart">
+                    <h1 class="title is-5">Your Basket</h1>
+                    <article class="media" v-for="item in $store.state.cart" :key="item">
+                        <figure class="media-left">
+                            <div class="image has-background-primary">
+                            </div>
+                        </figure>
+                        <div class="media-content">
+                            <p>{{ $store.getters.productsByKey[item].name }}</p>
+                            <p class="has-text-faded">{{ formatPrice($store.getters.productsByKey[item].price) }}</p>
+                        </div>
+                    </article>
+                    <div class="columns">
+                        <div class="column">
+                            <p>Subtotal</p>
+                        </div>
+                        <div class="column has-text-right">
+                            <p class="has-text-faded">
+                                {{ formatPrice($store.getters.totalCartPrice) }}
+                            </p>
+                        </div>
+                    </div>
+                    <router-link to="/checkout" class="button is-fullwidth is-black">Place Order Now</router-link>
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -67,6 +101,12 @@ const formatter = new Intl.NumberFormat('en-US', {
 @Component
 export default class Shop extends Vue {
 
+    private showCart = false;
+
+    private toggleCart() {
+        this.showCart = !this.showCart;
+    }
+
     private created() {
         this.$store.dispatch('getShopData');
     }
@@ -83,6 +123,10 @@ export default class Shop extends Vue {
         } else {
             return this.$store.getters.allProducts;
         }
+    }
+
+    private addToCart(id: string) {
+        this.$store.commit('addToCart', id);
     }
 
 }
@@ -123,5 +167,44 @@ export default class Shop extends Vue {
 .category-list .category a:hover,
 .category-list .category.is-active a {
     color: #4a4a4a;
+}
+
+.cart {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+.cart > .button {
+    height: 60px;
+    width: 60px;
+    padding: 0;
+    font-size: 20px;
+}
+
+.cart .box {
+    min-width: 300px;
+    max-height: 400px;
+    overflow: scroll;
+}
+
+.cart .box .image {
+    height: 38px;
+    width: 38px;
+}
+
+.cart .box .media p {
+    line-height: 120%;
+}
+
+.cart .columns {
+    margin-bottom: 0;
+}
+
+.cart .box .media {
+    border: none;
+    margin-bottom: 1rem;
+    padding: 0;
+    margin-top: 0;
 }
 </style>

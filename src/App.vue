@@ -169,11 +169,15 @@ body.has-navbar-fixed-top {
 
 .button {
     border: none;
-    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
     text-transform: uppercase;
     padding: 1.8rem;
     letter-spacing: 0.1rem;
     padding-right: 1.7rem;
+}
+
+.box {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
 .container-small {
@@ -191,6 +195,10 @@ body.has-navbar-fixed-top {
 
 .fade-enter, .fade-leave-active {
     opacity: 0
+}
+
+.has-text-faded {
+    color: #949494;
 }
 
 </style>

@@ -5,6 +5,10 @@ import About from './views/About.vue';
 import Shop from './views/Shop.vue';
 import Merchants from './views/Merchants.vue';
 import Login from './views/Login.vue';
+import Dashboard from './views/Dashboard.vue';
+import Checkout from './views/Checkout.vue';
+import Overview from './components/Overview.vue';
+import Orders from './components/Orders.vue';
 
 Vue.use(Router);
 
@@ -41,6 +45,27 @@ export default new Router({
             path: '/merchants',
             name: 'merchants',
             component: Merchants,
+        },
+        {
+            path: '/checkout',
+            name: 'checkout',
+            component: Checkout,
+        },
+        {
+            path: '/dashboard',
+            component: Dashboard,
+            children: [
+                {
+                    path: '',
+                    name: 'overview',
+                    component: Overview,
+                },
+                {
+                    path: 'orders',
+                    name: 'orders',
+                    component: Orders,
+                },
+            ],
         },
     ],
 });
