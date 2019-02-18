@@ -17,6 +17,7 @@
                 <div class="navbar-start">
                     <router-link class="navbar-item" active-class="is-active" to="/shop">Shop</router-link>
                     <router-link class="navbar-item" active-class="is-active" to="/merchants">Merchants</router-link>
+                    <a class="navbar-item" href="http://blog.freshsanjose.store/">Blog</a>
                 </div>
                 <div class="navbar-end">
                     <div class="navbar-item has-dropdown is-hoverable" v-if="!$store.getters.isLoggedIn">
