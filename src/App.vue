@@ -133,9 +133,9 @@ $colors: (
     "blue": ($blue, $blue-invert),
 );
 
-$link: $green;
-$link-invert: $green-invert;
-$link-focus-border: $green;
+$link: #4a4a4a;
+$link-invert: #ffffff;
+$link-focus-border: #4a4a4a;
 
 $family-primary: "Avenir", sans-serif;
 $family-secondary: "Frank Ruhl Libre", serif;
@@ -151,8 +151,14 @@ $family-secondary: "Frank Ruhl Libre", serif;
 
 <style>
 
-body.has-navbar-fixed-top {
-    padding-top: 4rem;
+.element::-webkit-scrollbar { width: 0 !important }
+.element { overflow: -moz-scrollbars-none; }
+.element { -ms-overflow-style: none; }
+
+@media (min-width: 1088px) {
+    body.has-navbar-fixed-top {
+        padding-top: 4rem;
+    }
 }
 
 .title {

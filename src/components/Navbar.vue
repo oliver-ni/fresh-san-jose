@@ -7,13 +7,13 @@
                     Fresh
                 </router-link>
             
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="showNav = !showNav" :class="{ 'is-active' : showNav }">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-            <div class="navbar-menu">
+            <div class="navbar-menu" :class="{ 'is-active' : showNav }">
                 <div class="navbar-start">
                     <router-link class="navbar-item" active-class="is-active" to="/shop">Shop</router-link>
                     <router-link class="navbar-item" active-class="is-active" to="/merchants">Merchants</router-link>
@@ -46,6 +46,7 @@ import Component from 'vue-class-component';
 
 @Component
 export default class Checkout extends Vue {
+    private showNav = false;
     private logout() {
         this.$store.dispatch('logout');
         this.$router.push('/');
@@ -56,12 +57,17 @@ export default class Checkout extends Vue {
 <style scoped>
 .navbar {
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
-    height: 4rem;
 }
 .navbar-item,
 .navbar-link {
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 1.3rem;
+}
+
+@media (min-width: 1088px) {
+    .navbar {
+        height: 4rem;
+    }
 }
 </style>

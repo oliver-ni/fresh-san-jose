@@ -38,7 +38,7 @@
                         <div class="columns is-multiline has-text-centered">
                             <div class="column is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd" v-for="id in productsToDisplay" :key="id">
                                 <div class="product">
-                                    <div class="product-image has-background-primary" @click="addToCart(id)"></div>
+                                    <div class="product-image has-background-primary" @click="launchModal(id)"></div>
                                     <span class="product-name">{{ $store.getters.productsByKey[id].name }}</span>
                                     <span class="product-price">{{ formatPrice($store.getters.productsByKey[id].price) }} / {{ $store.getters.productsByKey[id].qty_label }}</span>
                                 </div>
@@ -89,6 +89,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import Product from '@/components/Product.vue';
 
 import { mapGetters } from 'vuex';
 
@@ -125,8 +126,15 @@ export default class Shop extends Vue {
         }
     }
 
-    private addToCart(id: string) {
-        this.$store.commit('addToCart', id);
+    private launchModal(id: string) {
+        this.$modal.open({
+            parent: this,
+            component: Product,
+            hasModalCard: true,
+            props: {
+                productKey: id,
+            },
+        });
     }
 
 }
@@ -150,6 +158,25 @@ export default class Shop extends Vue {
     background-size: cover;
     margin-bottom: 1rem;
     border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.product .product-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background: black;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.product .product-image:hover::after {
+    opacity: 0.1
 }
 
 .category-filter {
@@ -184,7 +211,7 @@ export default class Shop extends Vue {
 
 .cart .box {
     min-width: 300px;
-    max-height: 400px;
+    max-height: 600px;
     overflow: scroll;
 }
 

@@ -43,6 +43,56 @@
                 </div>
             </div>
         </section>
+
+        <section class="section has-background-light">
+            <div class="container container-small has-text-centered">
+                <h1 class="title">Our team</h1>
+                <p>asfaslfas;lkfjaskl;fjaskl;fjal;sfj;alskfjkl;saf</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container container-small has-text-centered">
+                <h1 class="title">Contact</h1>
+                <div class="columns is-8 is-variable">
+                    <div class="column"></div>
+                    <div class="column"></div>
+                    <div class="column">
+                        <div class="step">
+                            <a href="https://facebook.com/freshsanjose/"><b-icon
+                                pack="fab"
+                                icon="facebook"
+                                size="is-large">
+                            </b-icon></a>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="step">
+                            <a href="https://google.com"><b-icon
+                                pack="fab"
+                                icon="instagram"
+                                size="is-large">
+                            </b-icon></a>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="step">
+                            <a href="https://google.com"><b-icon
+                                pack="fas"
+                                icon="envelope"
+                                size="is-large">
+                            </b-icon></a>
+                        </div>
+                    </div>
+                    <div class="column"></div>
+                    <div class="column"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="has-background-light has-text-centered">
+            Fresh San Jose &copy; 2019
+        </footer>
     </div>
 </template>
 
@@ -51,6 +101,10 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../assets/bg.jpg");
     background-size: cover;
     background-position: center;
+}
+
+footer {
+    padding: 2rem;
 }
 
 .step {

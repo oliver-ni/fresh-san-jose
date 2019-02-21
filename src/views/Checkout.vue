@@ -10,16 +10,20 @@
             <div class="container container-small">
                 <h1 class="title is-5">Your Items</h1>
                 <div class="items">
-                    <article class="media" v-for="item in $store.state.cart" :key="item">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>{{ $store.getters.productsByKey[item].name }}</p>
-                            <p class="has-text-faded">{{ formatPrice($store.getters.productsByKey[item].price) }}</p>
+                    <div class="columns is-multiline is-gapless">
+                        <div class="column is-half" v-for="item in $store.state.cart" :key="item">
+                            <article class="media">
+                                <figure class="media-left">
+                                    <div class="image has-background-primary">
+                                    </div>
+                                </figure>
+                                <div class="media-content">
+                                    <p>{{ $store.getters.productsByKey[item].name }}</p>
+                                    <p class="has-text-faded">{{ formatPrice($store.getters.productsByKey[item].price) }}</p>
+                                </div>
+                            </article>
                         </div>
-                    </article>
+                    </div>
                     <div class="columns is-gapless">
                         <div class="column">
                             <p>Subtotal</p>
@@ -48,10 +52,11 @@
 
         <section class="section">
             <div class="container container-small">
-                <h1 class="title is-5">Shipping Address</h1>
+                <h1 class="title is-5">Shipping &amp; Payment</h1>
                 <form>
                     <div class="field is-grouped">
                         <div class="control is-expanded">
+                                        <label class="label">Shipping Address</label>
                             <input class="input" type="text" placeholder="Street Address">
                         </div>
                     </div>
@@ -120,6 +125,37 @@
                             <input class="input is-success" type="email" placeholder="Zip">
                         </div>
                     </div>
+                                    <div class="field">
+                                        <label class="label">Card Number</label>
+                                        <p class="control">
+                                            <input class="input" type="tel" placeholder="0000 0000 0000 0000" required autofocus>
+                                        </p>
+                                    </div>
+
+                                    <div class="columns is-mobile">
+                                        <div class="column is-6 ">
+                                            <div class="field">
+                                                <label class="label">Expiry Date</label>
+                                                <p class="control">
+                                                    <input class="input" type="tel" placeholder="MM/YY" required>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="column is-6">
+                                            <div class="field">
+                                                <label class="label">CVV</label>
+                                                <p class="control">
+                                                    <input class="input" type="tel" placeholder="987" required>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <p class="control">
+                                            <a class="button is-black" type="submit">Submit Payment</a>
+                                        </p>
+                                    </div>
                 </form>
             </div>
         </section>
