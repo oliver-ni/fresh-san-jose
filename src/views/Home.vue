@@ -8,7 +8,7 @@
             </carousel>
             <div class="hero-body has-text-centered">
                 <div class="container">
-                    <h1 class="title is-display-1 has-text-shadow">From the farm to your doorstep.</h1>
+                    <h1 class="title is-1 is-display-1 has-text-shadow">From the farm to your doorstep.</h1>
                     <router-link class="button" to="/shop">Shop Now</router-link>
                 </div>
             </div>

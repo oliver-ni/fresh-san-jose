@@ -195,14 +195,13 @@ footer {
     body.has-navbar-fixed-top {
         padding-top: 4rem;
     }
+    .title.is-display-1 {
+        font-size: 5rem;
+    }
 }
 
 .title {
     font-family: "Frank Ruhl Libre", serif;
-}
-
-.is-display-1 {
-    font-size: 5rem;
 }
 
 .has-text-shadow {

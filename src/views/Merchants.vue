@@ -9,7 +9,7 @@
         <div class="hero is-dark" v-for="merchant in $store.state.firebase.merchants" :key="merchant.id">
             <div class="hero-body">
                 <div class="container container-small">
-                    <h1 class="title display-1">{{ merchant.name }}</h1>
+                    <h1 class="title is-1 is-display-1">{{ merchant.name }}</h1>
                     <p class="paragraph">{{ merchant.description }}</p>
                     <p class="paragraph"><router-link :to="'/shop/merchant/' + merchant.slug">Shop {{ merchant.name }} products.</router-link></p>
                 </div>
