@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@firebase/firestore": "^1.0.0",
+    "@firebase/storage": "^0.2.8",
     "buefy": "^0.7.1",
     "bulma-steps": "^2.2.1",
     "firebase": "^5.8.0",

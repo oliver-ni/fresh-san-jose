@@ -110,12 +110,25 @@
   resolved "https://registry.yarnpkg.com/@firebase/storage-types/-/storage-types-0.2.3.tgz#09e7ce30eb0d713733e0193cb5c0c3ac157bf330"
   integrity sha512-RaZeam2LgsB7xwAtOQr4G0Geoyf7D5TnLF3a12By6Rh0Z9PqBSlWn0SVYGW3SkmxIdqvWZMZvCyamUlqQvQzWw==
 
+"@firebase/storage-types@0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@firebase/storage-types/-/storage-types-0.2.5.tgz#e8e12baffadb8cae73a0b4c8641cc2ed4909977b"
+  integrity sha512-6M7iIPhhyA2Vgn+Hfqtonns5mo+hSPeK3UgaYCTmnmQ+CNcjYuo5srBa/z6YvaLByfhiEhrrR5I8iCk4HyzQDQ==
+
 "@firebase/storage@0.2.6":
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/@firebase/storage/-/storage-0.2.6.tgz#b6574bb8c81ffa83a993a80d8deb57c687f7b461"
   integrity sha512-kiQdn14l20+CxBSuc2fxaRU54XOtRHGM7hizp2RQ68gdUIEE/EQiixET0oY9LCmT3ucnIrGL7ABSD9sVhOWLsA==
   dependencies:
     "@firebase/storage-types" "0.2.3"
+    tslib "1.9.0"
+
+"@firebase/storage@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@firebase/storage/-/storage-0.2.8.tgz#b8a67981e2902f0abdff606de07e4910f6a2eb41"
+  integrity sha512-Tj4nCSAptuMo2gvowP7EZerIuTBXE25HAdUAapBhwsaoKLXEPTzaCh40pfOV8PlQ7DPntqQhGWlpDEmDYdiJ6Q==
+  dependencies:
+    "@firebase/storage-types" "0.2.5"
     tslib "1.9.0"
 
 "@firebase/util@0.2.5":

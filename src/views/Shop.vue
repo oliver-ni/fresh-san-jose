@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="columns">
 
-                    <div class="column is-narrow">
+                    <div class="column is-2">
                         <div class="columns is-multiline is-mobile has-text-centered-mobile">
                             <div class="column category-filter is-full-tablet is-half-mobile">
                                 <h3 class="title is-5 category-heading">Categories</h3>
@@ -38,7 +38,9 @@
                         <div class="columns is-multiline has-text-centered">
                             <div class="column is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd" v-for="id in productsToDisplay" :key="id">
                                 <div class="product">
-                                    <div class="product-image has-background-primary" @click="launchModal(id)"></div>
+                                    <div class="product-image"
+                                        :style="{ 'background-image': ($store.getters.productsByKey[id].image_id in images) ? 'url(' + images[$store.getters.productsByKey[id].image_id] + ')' : 'linear-gradient(#6BE243, #6BE243)' }"
+                                        @click="launchModal(id)"></div>
                                     <span class="product-name">{{ $store.getters.productsByKey[id].name }}</span>
                                     <span class="product-price">{{ formatPrice($store.getters.productsByKey[id].price) }} / {{ $store.getters.productsByKey[id].qty_label }}</span>
                                 </div>
@@ -47,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <b-loading :active="!$store.state.dataIsLoaded" :is-full-page="false" />
+            <b-loading :active="loading" :is-full-page="false" />
         </section>
 
         <transition name="fade">
@@ -99,6 +101,8 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import Product from '@/components/Product.vue';
 
+import firebase from '../firebase';
+
 import { mapGetters } from 'vuex';
 
 const formatter = new Intl.NumberFormat('en-US', {
@@ -111,13 +115,19 @@ const formatter = new Intl.NumberFormat('en-US', {
 export default class Shop extends Vue {
 
     private showCart = false;
+    private loading = true;
+    private images = {};
 
     private toggleCart() {
         this.showCart = !this.showCart;
     }
 
     private created() {
-        this.$store.dispatch('getShopData');
+        this.$store.dispatch('getShopData').then(() => {
+            this.getBackgroundImages().then(() => {
+                this.loading = false;
+            });
+        });
     }
 
     private formatPrice(price: number) {
@@ -132,6 +142,19 @@ export default class Shop extends Vue {
         } else {
             return this.$store.getters.allProducts;
         }
+    }
+
+    private getBackgroundImages() {
+        let storage = firebase.storage();
+        let storageRef = storage.ref();
+        let promises = [];
+        for (let product of this.productsToDisplay) {
+            let id = this.$store.getters.productsByKey[product].image_id;
+            promises.push(storageRef.child('products/' + id + '.jpg').getDownloadURL().then((url) => {
+                Vue.set(this.images, id, url);
+            }));
+        }
+        return Promise.all(promises);
     }
 
     private launchModal(id: string) {
