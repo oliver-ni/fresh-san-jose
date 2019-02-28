@@ -172,6 +172,7 @@ $steps-completed-color: $green;
 }
 
 html, body, #app {
+    overflow-x: hidden;
     height: 100%;
 }
 #app {
