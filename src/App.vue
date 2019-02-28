@@ -1,9 +1,16 @@
 <template>
     <div id="app">
         <Navbar></Navbar>
-        <transition name="fade">
-            <router-view/>
-        </transition>
+
+        <div id="content">
+            <transition name="fade">
+                <router-view/>
+            </transition>
+        </div>
+
+        <footer class="has-background-light has-text-centered">
+            Fresh San Jose &copy; 2019
+        </footer>
     </div>
 </template>
 
@@ -133,9 +140,9 @@ $colors: (
     "blue": ($blue, $blue-invert),
 );
 
-$link: #4a4a4a;
-$link-invert: #ffffff;
-$link-focus-border: #4a4a4a;
+$link: $green;
+$link-invert: $green-invert;
+$link-focus-border: $green;
 
 $family-primary: "Avenir", sans-serif;
 $family-secondary: "Frank Ruhl Libre", serif;
@@ -144,16 +151,44 @@ $family-secondary: "Frank Ruhl Libre", serif;
     font-family: $family-secondary;
 }
 
+$steps-active-color: $green;
+$steps-completed-color: $green;
+
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
+
+@import "~bulma-steps/dist/css/bulma-steps.sass";
 
 </style>
 
 <style>
 
-.element::-webkit-scrollbar { width: 0 !important }
-.element { overflow: -moz-scrollbars-none; }
-.element { -ms-overflow-style: none; }
+.paragraph + .paragraph {
+    margin-top: 0.5rem;
+}
+
+#app > #content > div > section.section:first-child:not(.retain-margin) {
+    padding-bottom: 0;
+}
+
+html, body, #app {
+    height: 100%;
+}
+#app {
+    display: flex;
+    flex-direction: column;
+}
+#content {
+    flex: 1 0 auto;
+}
+footer {
+    flex-shrink: 0;
+    padding: 1.5rem;
+}
+
+*::-webkit-scrollbar { width: 0 !important }
+* { overflow: -moz-scrollbars-none; }
+* { -ms-overflow-style: none; }
 
 @media (min-width: 1088px) {
     body.has-navbar-fixed-top {

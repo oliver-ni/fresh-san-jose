@@ -3,8 +3,8 @@
         <div class="container">
             <div class="navbar-brand">
                 <router-link class="navbar-item has-text-weight-bold" to="/">
-                    <!-- <img src="../assets/logo.png"> -->
-                    Fresh
+                    <img src="../assets/logo.png">
+                    <!-- Fresh -->
                 </router-link>
             
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="showNav = !showNav" :class="{ 'is-active' : showNav }">
@@ -57,6 +57,9 @@ export default class Checkout extends Vue {
 <style scoped>
 .navbar {
     box-shadow: 0 0 2rem rgba(0, 0, 0, 0.05);
+}
+.navbar-brand .navbar-item:hover {
+    filter: invert(79%) sepia(43%) saturate(733%) hue-rotate(49deg) brightness(93%) contrast(91%);
 }
 .navbar-item,
 .navbar-link {

@@ -11,13 +11,15 @@ Vue.use(Vuex);
 export default new Vuex.Store<RootState>({
     state: {
         dataIsLoaded: false,
-        cart: [],
+        cart: {},
     },
     mutations: {
         ...firebaseMutations,
-        addToCart(state, id) {
-            if (!state.cart.includes(id)) {
-                state.cart.push(id);
+        updateCart(state, payload) {
+            if (payload.qty > 0) {
+                Vue.set(state.cart, payload.key, payload.qty);
+            } else {
+                Vue.delete(state.cart, payload.key);
             }
         },
     },
@@ -27,8 +29,8 @@ export default new Vuex.Store<RootState>({
     },
     getters: {
         totalCartPrice(state, getters) {
-            return state.cart.reduce((acc, item) => {
-                return acc + getters.productsByKey[item].price;
+            return Object.keys(state.cart).reduce((acc, key) => {
+                return acc + getters.productsByKey[key].price * state.cart[key];
             }, 0);
         },
     },

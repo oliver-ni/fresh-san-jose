@@ -23,6 +23,14 @@ const moduleFirebase: Module<AuthState, RootState> =  {
                 state.status = 'error';
             });
         },
+        async loginAsDemo({ state, commit }) {
+            return firebase.auth().signInWithEmailAndPassword('demo@freshsanjose.store', 'demodemo').then((result) => {
+                state.user = result.user;
+                state.status = 'success';
+            }).catch((err) => {
+                state.status = 'error';
+            });
+        },
         async logout({ state, commit }) {
             return firebase.auth().signOut().then((result) => {
                 state.user = null;

@@ -1,27 +1,22 @@
 <template>
     <div id="merchants">
-        <section class="section">
+        <section class="section retain-margin">
             <div class="container has-text-centered">
                 <h1 class="title">Merchants</h1>
             </div>
         </section>
 
-        <section class="section" v-for="merchant in $store.state.firebase.merchants" :key="merchant.id">
-            <div class="container container-small">
-                <div class="columns">
-                    <div class="column is-one-third">
-                        <figure class="img">
-                            <img src="../assets/joe.jpg">
-                        </figure>
-                    </div>
-                    <div class="column">
-                        <h1 class="title">{{ merchant.name }}</h1>
-                        <p>{{ merchant.description }}</p>
-                    </div>
+        <div class="hero is-dark" v-for="merchant in $store.state.firebase.merchants" :key="merchant.id">
+            <div class="hero-body">
+                <div class="container container-small">
+                    <h1 class="title display-1">{{ merchant.name }}</h1>
+                    <p class="paragraph">{{ merchant.description }}</p>
+                    <p class="paragraph"><router-link :to="'/shop/merchant/' + merchant.slug">Shop {{ merchant.name }} products.</router-link></p>
                 </div>
             </div>
-            <b-loading :active="!$store.state.dataIsLoaded" :is-full-page="false" />
-        </section>
+        </div>
+
+        <b-loading :active="!$store.state.dataIsLoaded" :is-full-page="false" />
     </div>
 </template>
 
@@ -38,3 +33,11 @@ export default class Merchants extends Vue {
 
 }
 </script>
+
+<style scoped>
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../assets/joe.jpg);
+    background-size: cover;
+    background-position: center;
+}
+</style>

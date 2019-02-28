@@ -7,6 +7,7 @@ import Merchants from './views/Merchants.vue';
 import Login from './views/Login.vue';
 import Dashboard from './views/Dashboard.vue';
 import Checkout from './views/Checkout.vue';
+import Confirm from './views/Confirm.vue';
 import Overview from './components/Overview.vue';
 import Orders from './components/Orders.vue';
 
@@ -20,6 +21,11 @@ export default new Router({
             path: '/',
             name: 'home',
             component: Home,
+        },
+        {
+            path: '/confirm',
+            name: 'confirm',
+            component: Confirm,
         },
         {
             path: '/shop/category/:category',

@@ -1,6 +1,11 @@
 <template>
     <div id="home">
         <section class="hero is-large is-dark header">
+            <carousel :perPage="1" paginationActiveColor="#FFFFFF" paginationColor="#999999" :navigationEnabled="true">
+                <slide></slide>
+                <slide></slide>
+                <slide></slide>
+            </carousel>
             <div class="hero-body has-text-centered">
                 <div class="container">
                     <h1 class="title is-display-1 has-text-shadow">From the farm to your doorstep.</h1>
@@ -90,21 +95,13 @@
             </div>
         </section>
 
-        <footer class="has-background-light has-text-centered">
-            Fresh San Jose &copy; 2019
-        </footer>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3173.769192831659!2d-122.00690188433448!3d37.30060367984864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb5433bf5d9e3%3A0x7c976276883c3c10!2sLynbrook+High+School!5e0!3m2!1sen!2sus!4v1551317029048" frameborder="0" style="border: 0; width: 100%; height: 500px;" allowfullscreen></iframe>
     </div>
 </template>
 
 <style scoped>
 .header {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../assets/bg.jpg");
-    background-size: cover;
-    background-position: center;
-}
-
-footer {
-    padding: 2rem;
+    position: relative;
 }
 
 .step {
@@ -112,4 +109,56 @@ footer {
     margin-left: auto;
     margin-right: auto;
 }
+
+.VueCarousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+</style>
+
+<style>
+
+.VueCarousel-wrapper, .VueCarousel-inner, .VueCarousel-slide {
+    height: 100% !important;
+}
+
+.VueCarousel-slide {
+    background-size: cover;
+    background-position: center;
+    filter: brightness(50%);
+}
+
+.VueCarousel-slide:nth-child(1) {
+    background-image: url(../assets/bg1.jpg);
+}
+
+.VueCarousel-slide:nth-child(2) {
+    background-image: url(../assets/bg2.jpg);
+}
+
+.VueCarousel-slide:nth-child(3) {
+    background-image: url(../assets/bg3.jpg);
+}
+
+.VueCarousel-pagination {
+    position: absolute;
+    bottom: 10px;
+}
+
+.VueCarousel-navigation-button {
+    color: white !important;
+}
+
+.VueCarousel-navigation-prev {
+    left: 50px !important;
+}
+
+.VueCarousel-navigation-next {
+    right: 50px !important;
+}
+
 </style>

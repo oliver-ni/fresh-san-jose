@@ -10,8 +10,10 @@
   "dependencies": {
     "@firebase/firestore": "^1.0.0",
     "buefy": "^0.7.1",
+    "bulma-steps": "^2.2.1",
     "firebase": "^5.8.0",
     "vue": "^2.5.21",
+    "vue-carousel": "^0.18.0-alpha",
     "vue-class-component": "^6.0.0",
     "vue-property-decorator": "^7.0.0",
     "vue-router": "^3.0.1",

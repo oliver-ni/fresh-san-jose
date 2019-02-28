@@ -5,6 +5,9 @@ import router from './router';
 import store from './store';
 import firebase from './firebase';
 
+import VueCarousel from 'vue-carousel';
+Vue.use(VueCarousel);
+
 Vue.use(Buefy, {
     defaultIconPack: 'fas',
 });

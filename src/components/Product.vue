@@ -6,12 +6,14 @@
                     <figure class="image is-square has-background-primary"></figure>
                 </div>
                 <div class="column item-description">
-                    <div>
+                    <div class="item-head">
                         <h1 class="title">{{ $store.getters.productsByKey[productKey].name }}</h1>
                         <p>{{ $store.getters.productsByKey[productKey].description }}</p>
                     </div>
-                    <a class="button is-black" @click="addToCart()" v-if="!$store.state.cart.includes(productKey)">Add to cart</a>
-                    <a class="button is-black" @click="addToCart()" v-if="$store.state.cart.includes(productKey)" disabled>Already in cart</a>
+                    <div class="item-foot">
+                        <input class="input" type="number" placeholder="QTY" min="0" v-model.number="qty">
+                        <a class="button is-dark" @click="updateCart()">Update cart</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -26,8 +28,9 @@ import Component from 'vue-class-component';
     props: ['productKey'],
 })
 export default class Product extends Vue {
-    public addToCart() {
-        this.$store.commit('addToCart', this.$props.productKey);
+    private qty = 1;
+    public updateCart() {
+        this.$store.commit('updateCart', { key: this.$props.productKey, qty: this.qty });
         // @ts-ignore
         this.$parent.close();
     }
@@ -48,5 +51,20 @@ export default class Product extends Vue {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.item-foot {
+    display: flex;
+}
+
+.item-foot .button {
+    flex-grow: 1;
+}
+
+.item-foot input {
+    height: 100%;
+    max-width: 100px;
+    /* padding-top: 10px; */
+    margin-right: 1rem;
 }
 </style>

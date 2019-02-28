@@ -51,25 +51,32 @@
         </section>
 
         <transition name="fade">
-            <div class="cart" v-if="$store.state.cart.length > 0">
-                <a class="button is-rounded is-black" v-if="!showCart" @click="toggleCart()">
+            <div class="cart">
+                <a class="button is-rounded is-dark" v-if="!showCart" @click="toggleCart()">
                     <span class="icon is-small">
                         <i class="fas fa-shopping-basket"></i>
                     </span>
                 </a>
                 <div class="box" v-if="showCart">
+                    <a class="close-icon"><span @click="toggleCart()" class="icon">
+                        <i class="fas fa-times"></i>
+                    </span></a>
+
                     <h1 class="title is-5">Your Basket</h1>
-                    <article class="media" v-for="item in $store.state.cart" :key="item">
+
+                    <p v-if="Object.keys($store.state.cart).length == 0" style="margin-bottom: 1rem;">Fill me up! I'm empty!</p>
+
+                    <article class="media" v-for="(qty, item) in $store.state.cart" :key="item">
                         <figure class="media-left">
                             <div class="image has-background-primary">
                             </div>
                         </figure>
                         <div class="media-content">
                             <p>{{ $store.getters.productsByKey[item].name }}</p>
-                            <p class="has-text-faded">{{ formatPrice($store.getters.productsByKey[item].price) }}</p>
+                            <p class="has-text-faded">{{ formatPrice($store.getters.productsByKey[item].price) }} x {{ qty }}</p>
                         </div>
                     </article>
-                    <div class="columns">
+                    <div class="columns" v-if="Object.keys($store.state.cart).length > 0">
                         <div class="column">
                             <p>Subtotal</p>
                         </div>
@@ -79,7 +86,8 @@
                             </p>
                         </div>
                     </div>
-                    <router-link to="/checkout" class="button is-fullwidth is-black">Place Order Now</router-link>
+                    <router-link to="/checkout" class="button is-fullwidth is-dark" v-if="$store.getters.isLoggedIn">Place Order Now</router-link>
+                    <router-link to="/login?next=/checkout" class="button is-fullwidth is-dark" v-if="!$store.getters.isLoggedIn">Place Order Now</router-link>
                 </div>
             </div>
         </transition>
@@ -213,6 +221,13 @@ export default class Shop extends Vue {
     min-width: 300px;
     max-height: 600px;
     overflow: scroll;
+    position: relative;
+}
+
+.cart .box .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .cart .box .image {
