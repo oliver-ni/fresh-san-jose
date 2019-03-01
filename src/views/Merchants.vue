@@ -7,7 +7,7 @@
         </section>
 
         <div class="hero is-dark" v-for="merchant in $store.state.firebase.merchants" :key="merchant.id"
-            :style="{ 'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/' + merchant.slug + '.jpg)' }">
+            :style="{ 'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/' + merchant.slug + '.JPG)' }">
             <div class="hero-body">
                 <div class="container container-small">
                     <h1 class="title is-1">{{ merchant.name }}</h1>
