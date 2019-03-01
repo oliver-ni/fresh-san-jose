@@ -196,9 +196,9 @@ footer {
     padding: 1.5rem;
 }
 
-body > #app > *::-webkit-scrollbar { width: 0 !important }
-body > #app > * { overflow: -moz-scrollbars-none; }
-body > #app > * { -ms-overflow-style: none; }
+*:not(#app)::-webkit-scrollbar { width: 0 !important }
+*:not(#app) { overflow: -moz-scrollbars-none; }
+*:not(#app) { -ms-overflow-style: none; }
 
 @media (min-width: 1088px) {
     body.has-navbar-fixed-top {
