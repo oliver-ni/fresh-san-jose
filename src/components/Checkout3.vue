@@ -34,9 +34,29 @@
                             <p>San Jose, CA 95129</p>
                         </div>
                     </div>
+                    <div class="column is-3">
+                        <div class="box" :class="{'is-active': selection == 4}" @click="selection = 4">
+                            <h1 class="title is-4">PayPal</h1>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="box" :class="{'is-active': selection == 5}" @click="selection = 5">
+                            <h1 class="title is-4">Google Pay</h1>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="box" :class="{'is-active': selection == 6}" @click="selection = 6">
+                            <h1 class="title is-4">Apple Pay</h1>
+                        </div>
+                    </div>
+                    <div class="column is-3">
+                        <div class="box" :class="{'is-active': selection == 7}" @click="selection = 7">
+                            <h1 class="title is-4">PaySafeCard</h1>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="box" :class="{'is-active-new': selection == 4}" @click="selection = 4">
+                <div class="box" :class="{'is-active-new': selection == 8}" @click="selection = 8">
                     <h1 class="title is-4">Add new</h1>
                     <div class="field"><label class="label">Card Number</label><p class="control"><input type="tel" placeholder="0000 0000 0000 0000" required="required" autofocus="autofocus" class="input"></p></div>
                     <div class="columns is-mobile"><div class="column is-6 "><div class="field"><label class="label">Expiry Date</label><p class="control"><input type="tel" placeholder="MM/YY" required="required" class="input"></p></div></div><div class="column is-6"><div class="field"><label class="label">CVV</label><p class="control"><input type="tel" placeholder="987" required="required" class="input"></p></div></div></div>

@@ -1,12 +1,12 @@
 <template>
     <div id="merchants">
-        <section class="section">
+        <section class="section" v-if="!this.isLoading">
             <div class="container has-text-centered">
                 <h1 class="title">Your order has been confirmed!</h1>
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" v-if="!this.isLoading">
             <div class="container container-small">
                 <h1 class="title is-4">Thank you for supporting your local community!</h1>
 
@@ -52,9 +52,9 @@
                     </div>
                 </div>
 
-
             </div>
         </section>
+                <b-loading :is-full-page="false" :active.sync="isLoading"></b-loading>
     </div>
 </template>
 
@@ -70,6 +70,11 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 @Component
 export default class Confirm extends Vue {
+    private isLoading = true;
+    private created() {
+        setTimeout(() => this.isLoading = false, 0.5 * 1000)
+    }
+
     private formatPrice(price: number) {
         return formatter.format(price);
     }
