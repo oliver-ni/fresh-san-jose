@@ -51,8 +51,26 @@
 
         <section class="section has-background-light">
             <div class="container container-small has-text-centered">
-                <h1 class="title">Our team</h1>
-                <p>asfaslfas;lkfjaskl;fjaskl;fjal;sfj;alskfjkl;saf</p>
+                <h1 class="title">Our team and values</h1>
+                <div class="columns">
+                    <div class="column is-3">
+                    </div>
+                    <div class="column">
+                        <figure class="image is-square">
+                            <img src="../assets/on.jpg">
+                        </figure><br>
+                        <h1 class="subtitle is-4 has-text-centered">Oliver Ni</h1>
+                    </div>
+                    <div class="column">
+                        <figure class="image is-square">
+                            <img src="../assets/my.jpg">
+                        </figure><br>
+                        <h1 class="subtitle is-4 has-text-centered">Michael Yuan</h1>
+                    </div>
+                    <div class="column is-3">
+                    </div>
+                </div>
+                <p>Here at Fresh San Jose, we really do care about and value our local community. Caring about our local community starts with truly appreciating the many hard-working and amazing merchants that spend so much effort and time into creating spectacular products. Valuing our local community also means really listening to and taking care of our you, our valued customers. To really bring the community together, we have to strive towards creating an astounding platform that everyone wants to and enjoys using. Finally, caring for our local community means doing anything and everything to bring the best and highest quality foods to our local community. We really wanted to develop an e-business that provides the local community a platform to really be able to understand and appreciate the importance of locally grown, high quality, really delectable, and deliciously fresh foods.</p>
             </div>
         </section>
 
@@ -60,8 +78,7 @@
             <div class="container container-small has-text-centered">
                 <h1 class="title">Contact</h1>
                 <div class="columns is-8 is-variable">
-                    <div class="column"></div>
-                    <div class="column"></div>
+                    <div class="column is-3"></div>
                     <div class="column">
                         <div class="step">
                             <a href="https://facebook.com/freshsanjose/" class="has-text-normal"><b-icon
@@ -89,8 +106,7 @@
                             </b-icon></a>
                         </div>
                     </div>
-                    <div class="column"></div>
-                    <div class="column"></div>
+                    <div class="column is-3"></div>
                 </div>
             </div>
         </section>
@@ -102,6 +118,10 @@
 <style scoped>
 .header {
     position: relative;
+}
+
+.image img {
+    border-radius: 10px;
 }
 
 .step {
