@@ -9,7 +9,7 @@
             <div class="hero-body">
                 <div class="container container-small">
                     <h1 class="title is-1 is-display-1 is-spaced has-text-shadow">From the farm to your doorstep.</h1>
-                    <p class="subtitle is-4 has-text-shadow">Fresh San Jose provides produce from the farm delivered straight to you whenever you want, wherever you want. Support your local community, help the environment, and eat fresher foods when you buy on Fresh San Jose.</p>
+                    <p class="subtitle is-4 has-text-shadow">Fresh San Jose provides produce from the farm delivered straight to your doorstep. Support your local community and eat fresher foods when you buy on Fresh San Jose.</p>
                     <router-link class="button" to="/shop">Shop Now</router-link>
                 </div>
             </div>
@@ -137,6 +137,11 @@
     left: 0;
     bottom: 0;
     right: 0;
+}
+
+.hero-body {
+    padding-top: 15rem !important;
+    padding-bottom: 15rem !important;
 }
 
 </style>
