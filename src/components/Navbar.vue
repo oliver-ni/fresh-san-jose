@@ -30,7 +30,6 @@
                         <a class="navbar-link">{{ $store.state.auth.user.displayName }}</a>
                         <div class="navbar-dropdown">
                             <router-link class="navbar-item" to="/dashboard">Dashboard</router-link>
-                            <router-link class="navbar-item" to="/preferences">Preferences</router-link>
                             <a class="navbar-item" @click="logout()">Logout</a>
                         </div>
                     </div>
