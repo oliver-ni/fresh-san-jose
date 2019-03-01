@@ -1,14 +1,15 @@
 <template>
     <div id="home">
-        <section class="hero is-large is-dark header">
+        <section class="hero is-medium is-dark header">
             <carousel :perPage="1" paginationActiveColor="#FFFFFF" paginationColor="#999999" :navigationEnabled="true">
                 <slide></slide>
                 <slide></slide>
                 <slide></slide>
             </carousel>
-            <div class="hero-body has-text-centered">
-                <div class="container">
-                    <h1 class="title is-1 is-display-1 has-text-shadow">From the farm to your doorstep.</h1>
+            <div class="hero-body">
+                <div class="container container-small">
+                    <h1 class="title is-1 is-display-1 is-spaced has-text-shadow">From the farm to your doorstep.</h1>
+                    <p class="subtitle is-4 has-text-shadow">Fresh San Jose provides produce from the farm delivered straight to you whenever you want, wherever you want. Support your local community, help the environment, and eat fresher foods when you buy on Fresh San Jose.</p>
                     <router-link class="button" to="/shop">Shop Now</router-link>
                 </div>
             </div>
@@ -149,7 +150,7 @@
 .VueCarousel-slide {
     background-size: cover;
     background-position: center;
-    filter: brightness(50%);
+    filter: brightness(40%);
 }
 
 .VueCarousel-slide:nth-child(1) {

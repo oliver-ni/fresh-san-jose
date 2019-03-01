@@ -205,7 +205,7 @@ footer {
         padding-top: 4rem;
     }
     .title.is-display-1 {
-        font-size: 5rem;
+        font-size: 4rem;
     }
 }
 
@@ -214,7 +214,7 @@ footer {
 }
 
 .has-text-shadow {
-    text-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 2rem rgba(0, 0, 0, 0.4);
 }
 
 .button {
