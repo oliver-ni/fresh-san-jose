@@ -3,7 +3,7 @@
         <section class="modal-card-body">
             <div class="columns">
                 <div class="column is-5">
-                    <figure class="image is-square has-background-primary"></figure>
+                    <figure class="image is-square bg-cover" :style="{ 'background-image': 'url(' + image + ')' }"></figure>
                 </div>
                 <div class="column item-description">
                     <div class="item-head">
@@ -25,7 +25,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 
 @Component({
-    props: ['productKey'],
+    props: ['productKey', 'image'],
 })
 export default class Product extends Vue {
     private qty = 1;

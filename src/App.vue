@@ -8,7 +8,7 @@
             </transition>
         </div>
 
-        <footer class="has-background-light has-text-centered">
+        <footer class="has-text-centered" :class="{ 'has-background-light': $router.currentRoute.name != 'home' }">
             Fresh San Jose &copy; 2019
         </footer>
     </div>
@@ -129,6 +129,9 @@ $green-invert: findColorInvert($primary);
 $blue: #47B5ED;
 $blue-invert: findColorInvert($blue);
 
+$normal: #4A4A4A;
+$normal-invert: findColorInvert($normal);
+
 $colors: (
     "white": ($white, $black),
     "black": ($black, $white),
@@ -138,6 +141,7 @@ $colors: (
     "orange": ($orange, $orange-invert),
     "yellow": ($yellow, $yellow-invert),
     "blue": ($blue, $blue-invert),
+    "normal": ($normal, $normal-invert),
 );
 
 $link: $green;
@@ -163,6 +167,11 @@ $steps-completed-color: $green;
 
 <style>
 
+.bg-cover {
+    background-size: cover;
+    background-position: center;
+}
+
 .paragraph + .paragraph {
     margin-top: 0.5rem;
 }
@@ -187,9 +196,9 @@ footer {
     padding: 1.5rem;
 }
 
-*::-webkit-scrollbar { width: 0 !important }
-* { overflow: -moz-scrollbars-none; }
-* { -ms-overflow-style: none; }
+body > #app > *::-webkit-scrollbar { width: 0 !important }
+body > #app > * { overflow: -moz-scrollbars-none; }
+body > #app > * { -ms-overflow-style: none; }
 
 @media (min-width: 1088px) {
     body.has-navbar-fixed-top {

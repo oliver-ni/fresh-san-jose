@@ -64,7 +64,7 @@
                     <div class="column"></div>
                     <div class="column">
                         <div class="step">
-                            <a href="https://facebook.com/freshsanjose/"><b-icon
+                            <a href="https://facebook.com/freshsanjose/" class="has-text-normal"><b-icon
                                 pack="fab"
                                 icon="facebook"
                                 size="is-large">
@@ -73,7 +73,7 @@
                     </div>
                     <div class="column">
                         <div class="step">
-                            <a href="https://google.com"><b-icon
+                            <a href="https://instagram.com/freshsanjose/" class="has-text-normal"><b-icon
                                 pack="fab"
                                 icon="instagram"
                                 size="is-large">
@@ -82,7 +82,7 @@
                     </div>
                     <div class="column">
                         <div class="step">
-                            <a href="https://google.com"><b-icon
+                            <a href="mailto:freshsanjose@gmail.com" class="has-text-normal"><b-icon
                                 pack="fas"
                                 icon="envelope"
                                 size="is-large">
@@ -159,6 +159,10 @@
 
 .VueCarousel-navigation-next {
     right: 50px !important;
+}
+
+iframe {
+    margin-bottom: -8px;
 }
 
 </style>

@@ -70,12 +70,16 @@
 
                     <article class="media" v-for="(qty, item) in $store.state.cart" :key="item">
                         <figure class="media-left">
-                            <div class="image has-background-primary">
+                            <div class="image bg-cover"
+                                :style="{ 'background-image': ($store.getters.productsByKey[item].image_id in images) ? 'url(' + images[$store.getters.productsByKey[item].image_id] + ')' : 'linear-gradient(#6BE243, #6BE243)' }">
                             </div>
                         </figure>
                         <div class="media-content">
                             <p>{{ $store.getters.productsByKey[item].name }}</p>
                             <p class="has-text-faded">{{ formatPrice($store.getters.productsByKey[item].price) }} x {{ qty }}</p>
+                        </div>
+                        <div class="media-right">
+                            <button class="delete" @click="deleteProduct(item)"></button>
                         </div>
                     </article>
                     <div class="columns" v-if="Object.keys($store.state.cart).length > 0">
@@ -164,7 +168,15 @@ export default class Shop extends Vue {
             hasModalCard: true,
             props: {
                 productKey: id,
+                image: this.images[this.$store.getters.productsByKey[id].image_id],
             },
+        });
+    }
+
+    private deleteProduct(id: string) {
+        this.$store.commit('updateCart', {
+            key: id,
+            qty: 0,
         });
     }
 
@@ -208,6 +220,10 @@ export default class Shop extends Vue {
 
 .product .product-image:hover::after {
     opacity: 0.1
+}
+
+.media:not(:hover) .media-right {
+    visibility: hidden;
 }
 
 .category-filter {
@@ -256,6 +272,7 @@ export default class Shop extends Vue {
 .cart .box .image {
     height: 38px;
     width: 38px;
+    border-radius: 6px;
 }
 
 .cart .box .media p {
