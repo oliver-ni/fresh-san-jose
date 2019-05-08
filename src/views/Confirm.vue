@@ -54,7 +54,6 @@
 
             </div>
         </section>
-                <b-loading :is-full-page="false" :active.sync="isLoading"></b-loading>
     </div>
 </template>
 
@@ -70,10 +69,6 @@ const formatter = new Intl.NumberFormat('en-US', {
 
 @Component
 export default class Confirm extends Vue {
-    private isLoading = true;
-    private created() {
-        setTimeout(() => this.isLoading = false, 0.5 * 1000)
-    }
 
     private formatPrice(price: number) {
         return formatter.format(price);

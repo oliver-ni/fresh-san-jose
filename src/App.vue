@@ -236,11 +236,11 @@ footer {
 
 .fade-enter-active, .fade-leave-active {
     transition-property: opacity;
-    transition-duration: .25s;
+    transition-duration: .15s;
 }
 
 .fade-enter-active {
-    transition-delay: .25s;
+    transition-delay: .15s;
 }
 
 .fade-enter, .fade-leave-active {

@@ -7,7 +7,7 @@
                         <div class="column is-half is-one-third-desktop" v-for="(qty, item) in $store.state.cart" :key="item">
                             <article class="media">
                                 <figure class="media-left">
-                                    <div class="image has-background-primary">
+                                    <div class="image" :style="{ 'background-image': ($store.getters.productsByKey[item].image_id in $store.state.images) ? 'url(' + $store.state.images[$store.getters.productsByKey[item].image_id] + ')' : 'linear-gradient(#6BE243, #6BE243)' }">
                                     </div>
                                 </figure>
                                 <div class="media-content">
@@ -32,10 +32,10 @@
                                 {{ formatPrice(0.07 * $store.getters.totalCartPrice) }}
                             </p>
                             <p class="has-text-faded">
-                                {{ formatPrice(0.99 * Object.keys($store.state.cart).length) }}
+                                $2.99
                             </p>
                             <p class="has-text-faded has-text-weight-bold">
-                                {{ formatPrice(1.07 * $store.getters.totalCartPrice + 0.99 * Object.keys($store.state.cart).length) }}
+                                {{ formatPrice(1.07 * $store.getters.totalCartPrice + 2.99) }}
                             </p>
                         </div>
                     </div>
@@ -62,3 +62,9 @@ export default class Checkout1 extends Vue {
     }
 }
 </script>
+
+<style scoped>
+.image {
+    background-size: cover;
+}
+</style>

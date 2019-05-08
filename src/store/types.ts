@@ -3,6 +3,7 @@ import firebase from '@/firebase';
 export interface RootState {
     dataIsLoaded: boolean;
     cart: any;
+    images: any;
     auth?: AuthState;
     firebase?: FirebaseState;
 }

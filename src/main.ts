@@ -6,7 +6,13 @@ import store from './store';
 import firebase from './firebase';
 
 import VueCarousel from 'vue-carousel';
+import VueLazyload from 'vue-lazyload';
+
 Vue.use(VueCarousel);
+Vue.use(VueLazyload, {
+    loading: '/placeholder.png',
+    error: '/placeholder.png',
+});
 
 Vue.use(Buefy, {
     defaultIconPack: 'fas',

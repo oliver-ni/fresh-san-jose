@@ -1,15 +1,18 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
-import About from './views/About.vue';
-import Shop from './views/Shop.vue';
-import Merchants from './views/Merchants.vue';
-import Login from './views/Login.vue';
-import Dashboard from './views/Dashboard.vue';
-import Checkout from './views/Checkout.vue';
-import Confirm from './views/Confirm.vue';
-import Overview from './components/Overview.vue';
-import Orders from './components/Orders.vue';
+
+const Home = () => import(/* webpackChunkName: "group-1" */ './views/Home.vue');
+const Merchants = () => import(/* webpackChunkName: "group-1" */ './views/Merchants.vue');
+const Copyright = () => import(/* webpackChunkName: "group-1" */ './views/Copyright.vue');
+
+const Login = () => import(/* webpackChunkName: "group-2" */ './views/Login.vue');
+const Dashboard = () => import(/* webpackChunkName: "group-2" */ './views/Dashboard.vue');
+const Orders = () => import(/* webpackChunkName: "group-2" */ './components/Orders.vue');
+
+const Checkout = () => import(/* webpackChunkName: "group-3" */ './views/Checkout.vue');
+const Confirm = () => import(/* webpackChunkName: "group-3" */ './views/Confirm.vue');
+
+const Shop = () => import(/* webpackChunkName: "group-4" */ './views/Shop.vue');
 
 Vue.use(Router);
 
@@ -51,6 +54,11 @@ export default new Router({
             path: '/merchants',
             name: 'merchants',
             component: Merchants,
+        },
+        {
+            path: '/copyright',
+            name: 'copyright',
+            component: Copyright,
         },
         {
             path: '/checkout',

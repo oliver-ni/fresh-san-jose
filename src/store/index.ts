@@ -12,6 +12,7 @@ export default new Vuex.Store<RootState>({
     state: {
         dataIsLoaded: false,
         cart: {},
+        images: {},
     },
     mutations: {
         ...firebaseMutations,

@@ -55,17 +55,21 @@
                     <div v-if="currentStep == 1"></div>
                     <a class="button" @click="currentStep--" v-if="currentStep != 1">Previous</a>
                     <a class="button" @click="currentStep++" v-if="currentStep != 3">Next</a>
-                    <router-link to="/confirm" class="button is-dark" type="submit" v-if="currentStep == 3">Submit Payment</router-link>
+                    <a class="button is-dark" type="submit" v-if="currentStep == 3" @click="submitPayment()">Submit Payment</a>
                 </div>
             </section>
 
         </div>
+
+        <b-loading :is-full-page="false" :active.sync="isLoading"></b-loading>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
+
+import firebase from '@/firebase';
 
 import Checkout1 from '../components/Checkout1.vue';
 import Checkout2 from '../components/Checkout2.vue';
@@ -87,10 +91,27 @@ const formatter = new Intl.NumberFormat('en-US', {
 export default class Checkout extends Vue {
 
     private currentStep = 1;
+    private isLoading = false;
 
     private inStore = false;
     private formatPrice(price: number) {
         return formatter.format(price);
+    }
+
+    private async submitPayment() {
+        this.isLoading = true;
+        const db = firebase.firestore();
+
+        try {
+            const ref = await db.collection('orders').add({
+                items: this.$store.state.cart,
+                time: new Date(),
+            });
+            this.$router.push('/dashboard');
+        } catch {
+            alert('Error submitting payment');
+            this.isLoading = false;
+        }
     }
 
 }

@@ -25,11 +25,15 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 
 @Component({
-    props: ['productKey', 'image'],
+    props: ['productKey', 'image', 'openCart'],
 })
 export default class Product extends Vue {
     private qty = 1;
     public updateCart() {
+        if (Object.keys(this.$store.state.cart).length === 0) {
+            // @ts-ignore
+            this.openCart();
+        }
         this.$store.commit('updateCart', { key: this.$props.productKey, qty: this.qty });
         // @ts-ignore
         this.$parent.close();

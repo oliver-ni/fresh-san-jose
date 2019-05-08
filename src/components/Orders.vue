@@ -2,331 +2,39 @@
     <div id="orders">
         <h1 class="title is-5">Your Orders</h1>
         <div class="columns is-multiline">
-            <div class="column is-half">
+            <div class="column is-half" v-for="order in orders" :key="order.id">
                 <div class="box">
-                    <h1 class="title is-5">February 15, 2019</h1>
-                    <article class="media">
+                    <h1 class="title is-5">{{ formatDate(order.time.seconds) }}</h1>
+                    <article class="media" v-for="(qty, item) in order.items" :key="item.id">
                         <figure class="media-left">
-                            <div class="image has-background-primary">
+                            <div class="image" :style="{ 'background-image': ($store.getters.productsByKey[item].image_id in $store.state.images) ? 'url(' + $store.state.images[$store.getters.productsByKey[item].image_id] + ')' : 'linear-gradient(#6BE243, #6BE243)' }">
                             </div>
                         </figure>
                         <div class="media-content">
-                            <p>Gala Apples</p>
-                            <p class="has-text-faded">$1.79</p>
+                            <p>{{ $store.getters.productsByKey[item].name }}</p>
+                            <p class="has-text-faded">{{ formatPrice($store.getters.productsByKey[item].price) }} x {{ qty }}</p>
                         </div>
                     </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Raspberries</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Seedless Watermelon</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Whole Chicken</p>
-                            <p class="has-text-faded">$9.99</p>
-                        </div>
-                    </article>
+                    <div class="fg-1"></div>
                     <div class="columns is-gapless">
                         <div class="column">
                             <p>Subtotal</p>
+                            <p>Tax</p>
+                            <p>Delivery</p>
+                            <p class="has-text-weight-bold">Total Paid</p>
                         </div>
                         <div class="column has-text-right">
                             <p class="has-text-faded">
-                                {{ formatPrice($store.getters.totalCartPrice) }}
+                                {{ formatPrice(getPrice(order.items)) }}
                             </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-half">
-                <div class="box">
-                    <h1 class="title is-5">February 2, 2019</h1>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Gala Apples</p>
-                            <p class="has-text-faded">$1.79</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Raspberries</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Seedless Watermelon</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Whole Chicken</p>
-                            <p class="has-text-faded">$9.99</p>
-                        </div>
-                    </article>
-                    <div class="columns is-gapless">
-                        <div class="column">
-                            <p>Subtotal</p>
-                        </div>
-                        <div class="column has-text-right">
                             <p class="has-text-faded">
-                                {{ formatPrice($store.getters.totalCartPrice) }}
+                                {{ formatPrice(0.07 * getPrice(order.items)) }}
                             </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-half">
-                <div class="box">
-                    <h1 class="title is-5">January 23, 2019</h1>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Gala Apples</p>
-                            <p class="has-text-faded">$1.79</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Raspberries</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Seedless Watermelon</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Whole Chicken</p>
-                            <p class="has-text-faded">$9.99</p>
-                        </div>
-                    </article>
-                    <div class="columns is-gapless">
-                        <div class="column">
-                            <p>Subtotal</p>
-                        </div>
-                        <div class="column has-text-right">
                             <p class="has-text-faded">
-                                {{ formatPrice($store.getters.totalCartPrice) }}
+                                $2.99
                             </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-half">
-                <div class="box">
-                    <h1 class="title is-5">January 17, 2019</h1>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Gala Apples</p>
-                            <p class="has-text-faded">$1.79</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Raspberries</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Seedless Watermelon</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Whole Chicken</p>
-                            <p class="has-text-faded">$9.99</p>
-                        </div>
-                    </article>
-                    <div class="columns is-gapless">
-                        <div class="column">
-                            <p>Subtotal</p>
-                        </div>
-                        <div class="column has-text-right">
-                            <p class="has-text-faded">
-                                {{ formatPrice($store.getters.totalCartPrice) }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-half">
-                <div class="box">
-                    <h1 class="title is-5">January 12, 2019</h1>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Gala Apples</p>
-                            <p class="has-text-faded">$1.79</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Raspberries</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Seedless Watermelon</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Whole Chicken</p>
-                            <p class="has-text-faded">$9.99</p>
-                        </div>
-                    </article>
-                    <div class="columns is-gapless">
-                        <div class="column">
-                            <p>Subtotal</p>
-                        </div>
-                        <div class="column has-text-right">
-                            <p class="has-text-faded">
-                                {{ formatPrice($store.getters.totalCartPrice) }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-half">
-                <div class="box">
-                    <h1 class="title is-5">January 5, 2019</h1>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Gala Apples</p>
-                            <p class="has-text-faded">$1.79</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Raspberries</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Seedless Watermelon</p>
-                            <p class="has-text-faded">$3.99</p>
-                        </div>
-                    </article>
-                    <article class="media">
-                        <figure class="media-left">
-                            <div class="image has-background-primary">
-                            </div>
-                        </figure>
-                        <div class="media-content">
-                            <p>Whole Chicken</p>
-                            <p class="has-text-faded">$9.99</p>
-                        </div>
-                    </article>
-                    <div class="columns is-gapless">
-                        <div class="column">
-                            <p>Subtotal</p>
-                        </div>
-                        <div class="column has-text-right">
-                            <p class="has-text-faded">
-                                {{ formatPrice($store.getters.totalCartPrice) }}
+                            <p class="has-text-faded has-text-weight-bold">
+                                {{ formatPrice(1.07 * getPrice(order.items) + 2.99) }}
                             </p>
                         </div>
                     </div>
@@ -351,13 +59,43 @@ export default class Overview extends Vue {
     private formatPrice(price: number) {
         return formatter.format(price);
     }
+
+    get orders() {
+        return this.$store.state.firebase.orders.sort((a: any, b: any) => {
+            return b.time.seconds - a.time.seconds;
+        });
+    }
+
+    private created() {
+        this.$store.dispatch('getShopData').then(() => {
+            this.$store.dispatch('getBackgroundImages');
+        });
+    }
+
+    private getPrice(products: any) {
+        return Object.keys(products).reduce((acc, key) => {
+            return acc + this.$store.getters.productsByKey[key].price * products[key];
+        }, 0);
+    }
+
+    private formatDate(seconds: number) {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return (new Date(seconds * 1000)).toLocaleDateString('en-US', options);
+    }
 }
 </script>
 
 <style>
+.columns .column .box {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 .box .image {
     height: 38px;
     width: 38px;
+    background-size: cover;
+    border-radius: 6px;
 }
 
 .box .media p {
@@ -373,5 +111,9 @@ export default class Overview extends Vue {
     margin-bottom: 1rem;
     padding: 0;
     margin-top: 0;
+}
+
+.fg-1 {
+    flex-grow: 1;
 }
 </style>
