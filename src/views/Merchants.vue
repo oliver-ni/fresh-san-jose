@@ -28,15 +28,12 @@
         </div>
 
         <!-- <div class="hero is-dark" v-for="merchant in $store.state.firebase.merchants" :key="merchant.id"
-            :style="{ 'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/' + merchant.slug + '.JPG)' }"
-            @mouseover="showId = merchant.id" @mouseout="showId = ''">
+            :style="{ 'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/' + merchant.slug + '.JPG)' }">
             <div class="hero-body">
                 <div class="container container-small">
                     <h1 class="title is-1">{{ merchant.name }}</h1>
-                    <transition name="fade">
-                        <p class="paragraph" v-if="showId == merchant.id">{{ merchant.description }}</p>
-                        <p class="paragraph" v-if="showId == merchant.id"><router-link :to="'/shop/merchant/' + merchant.slug">Shop {{ merchant.name }} products.</router-link></p>
-                    </transition>
+                    <p class="paragraph">{{ merchant.description }}</p>
+                    <p class="paragraph"><router-link :to="'/shop/merchant/' + merchant.slug">Shop {{ merchant.name }} products.</router-link></p>
                 </div>
             </div>
         </div> -->
@@ -74,5 +71,8 @@ export default class Merchants extends Vue {
 <style scoped>
 #merchants > div {
     padding-bottom: 20px;
+}
+.container {
+    max-width: 90%;
 }
 </style>
