@@ -8,9 +8,33 @@
 
         <section class="section">
             <div class="container">
-                <router-view></router-view>
+
+                <div class="columns">
+
+                    <div class="column is-narrow category-filter">
+                        <h3 class="title is-5 category-heading">Dashboard</h3>
+                        <ul class="category-list">
+                            <router-link tag="li" class="category" exact-active-class="is-active" to="/dashboard/orders">
+                                <a>Orders</a>
+                            </router-link>
+                            <router-link tag="li" class="category" exact-active-class="is-active" to="/dashboard/preferences">
+                                <a>Preferences</a>
+                            </router-link>
+                            <router-link tag="li" class="category" exact-active-class="is-active" to="/dashboard/recommendations">
+                                <a>Recommendations</a>
+                            </router-link>
+                            <li class="category" @click="logout()">
+                                <a>Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="column">
+                        <router-view></router-view>
+                    </div>
+
+                </div>
             </div>
-            <b-loading :active="!$store.state.dataIsLoaded" :is-full-page="false" />
         </section>
     </div>
 </template>
@@ -32,6 +56,11 @@ export default class Shop extends Vue {
 
     private created() {
         this.$store.dispatch('getShopData');
+    }
+
+    private logout() {
+        this.$store.dispatch('logout');
+        this.$router.push('/');
     }
 
     private formatPrice(price: number) {

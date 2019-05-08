@@ -1,10 +1,39 @@
 <template>
     <div id="orders">
-        <h1 class="title is-5">Your Orders</h1>
+        <h1 class="title is-5">Pending Orders</h1>
+
         <div class="columns is-multiline">
-            <div class="column is-half" v-for="order in orders" :key="order.id">
+            <div class="column is-half" v-for="(order, index) in orders.slice(0, 2)" :key="order.id">
                 <div class="box">
                     <h1 class="title is-5">{{ formatDate(order.time.seconds) }}</h1>
+
+                    <div class="steps is-small">
+                        <div class="step-item is-completed">
+                            <div class="step-marker">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="step-details">
+                                <p class="step-title">Confirmed</p>
+                            </div>
+                        </div>
+                        <div class="step-item" :class="{'is-completed': index > 0, 'is-active': index == 0}">
+                            <div class="step-marker">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="step-details">
+                                <p class="step-title">In Transport</p>
+                            </div>
+                        </div>
+                        <div class="step-item" :class="{'is-active': index > 0}">
+                            <div class="step-marker">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="step-details">
+                                <p class="step-title">Delivered</p>
+                            </div>
+                        </div>
+                    </div>
+
                     <article class="media" v-for="(qty, item) in order.items" :key="item.id">
                         <figure class="media-left">
                             <div class="image" :style="{ 'background-image': ($store.getters.productsByKey[item].image_id in $store.state.images) ? 'url(' + $store.state.images[$store.getters.productsByKey[item].image_id] + ')' : 'linear-gradient(#6BE243, #6BE243)' }">
@@ -22,6 +51,9 @@
                             <p>Tax</p>
                             <p>Delivery</p>
                             <p class="has-text-weight-bold">Total Paid</p>
+                            <br>
+                            <p>Paid with</p>
+                            <p>Ship to</p>
                         </div>
                         <div class="column has-text-right">
                             <p class="has-text-faded">
@@ -36,11 +68,66 @@
                             <p class="has-text-faded has-text-weight-bold">
                                 {{ formatPrice(1.07 * getPrice(order.items) + 2.99) }}
                             </p>
+                            <br>
+                            <p class="has-text-faded">Visa x-5728</p>
+                            <p class="has-text-faded">Pick Up In Store</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <h1 class="title is-5">Past Orders</h1>
+
+        <div class="columns is-multiline">
+            <div class="column is-half" v-for="order in orders.slice(2)" :key="order.id">
+                <div class="box">
+                    <h1 class="title is-5">{{ formatDate(order.time.seconds) }}</h1>
+
+                    <article class="media" v-for="(qty, item) in order.items" :key="item.id">
+                        <figure class="media-left">
+                            <div class="image" :style="{ 'background-image': ($store.getters.productsByKey[item].image_id in $store.state.images) ? 'url(' + $store.state.images[$store.getters.productsByKey[item].image_id] + ')' : 'linear-gradient(#6BE243, #6BE243)' }">
+                            </div>
+                        </figure>
+                        <div class="media-content">
+                            <p>{{ $store.getters.productsByKey[item].name }}</p>
+                            <p class="has-text-faded">{{ formatPrice($store.getters.productsByKey[item].price) }} x {{ qty }}</p>
+                        </div>
+                    </article>
+                    <div class="fg-1"></div>
+                    <div class="columns is-gapless">
+                        <div class="column">
+                            <p>Subtotal</p>
+                            <p>Tax</p>
+                            <p>Delivery</p>
+                            <p class="has-text-weight-bold">Total Paid</p>
+                            <br>
+                            <p>Paid with</p>
+                            <p>Ship to</p>
+                        </div>
+                        <div class="column has-text-right">
+                            <p class="has-text-faded">
+                                {{ formatPrice(getPrice(order.items)) }}
+                            </p>
+                            <p class="has-text-faded">
+                                {{ formatPrice(0.07 * getPrice(order.items)) }}
+                            </p>
+                            <p class="has-text-faded">
+                                $2.99
+                            </p>
+                            <p class="has-text-faded has-text-weight-bold">
+                                {{ formatPrice(1.07 * getPrice(order.items) + 2.99) }}
+                            </p>
+                            <br>
+                            <p class="has-text-faded">Visa x-5728</p>
+                            <p class="has-text-faded">Pick Up In Store</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <b-loading :active="loading" :is-full-page="false" />
     </div>
 </template>
 
@@ -55,7 +142,9 @@ const formatter = new Intl.NumberFormat('en-US', {
 });
 
 @Component
-export default class Overview extends Vue {
+export default class Orders extends Vue {
+    private loading = true;
+
     private formatPrice(price: number) {
         return formatter.format(price);
     }
@@ -66,10 +155,10 @@ export default class Overview extends Vue {
         });
     }
 
-    private created() {
-        this.$store.dispatch('getShopData').then(() => {
-            this.$store.dispatch('getBackgroundImages');
-        });
+    private async created() {
+        await this.$store.dispatch('getShopData');
+        this.loading = false;
+        await this.$store.dispatch('getBackgroundImages');
     }
 
     private getPrice(products: any) {

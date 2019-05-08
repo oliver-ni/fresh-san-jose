@@ -10,8 +10,8 @@ import VueLazyload from 'vue-lazyload';
 
 Vue.use(VueCarousel);
 Vue.use(VueLazyload, {
-    loading: '/placeholder.png',
-    error: '/placeholder.png',
+    // loading: '/placeholder.png',
+    // error: '/placeholder.png',
 });
 
 Vue.use(Buefy, {

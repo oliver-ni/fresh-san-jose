@@ -38,9 +38,10 @@
                         <div class="columns is-multiline has-text-centered">
                             <div class="column is-one-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd" v-for="id in productsToDisplay" :key="id">
                                 <div class="product">
-                                    <div class="product-image"
+                                    <div class="product-image has-background-primary"
                                         v-lazy:background-image="$store.state.images[$store.getters.productsByKey[id].image_id]"
-                                        @click="launchModal(id)"></div>
+                                        @click="launchModal(id)">
+                                    </div>
                                     <span class="product-name">{{ $store.getters.productsByKey[id].name }}</span>
                                     <span class="product-price">{{ formatPrice($store.getters.productsByKey[id].price) }} / {{ $store.getters.productsByKey[id].qty_label }}</span>
                                 </div>
@@ -190,25 +191,34 @@ export default class Shop extends Vue {
     border-radius: 10px;
     position: relative;
     cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.product .product-image::after {
-    content: "";
+.product .product-image::before {
+    content: "More Info";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     border-radius: 10px;
-    background: black;
-    opacity: 0;
-    transition: opacity 0.2s;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.2s, color 0.2s;
+
+    color: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.product .product-image:hover::after {
-    opacity: 0.1
+.product .product-image:hover::before {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
 }
-
 .media:not(:hover) .media-right {
     visibility: hidden;
 }

@@ -2,17 +2,18 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 const Home = () => import(/* webpackChunkName: "group-1" */ './views/Home.vue');
-const Merchants = () => import(/* webpackChunkName: "group-1" */ './views/Merchants.vue');
 const Copyright = () => import(/* webpackChunkName: "group-1" */ './views/Copyright.vue');
+const Blog = () => import(/* webpackChunkName: "group-1" */ './views/Blog.vue');
 
 const Login = () => import(/* webpackChunkName: "group-2" */ './views/Login.vue');
 const Dashboard = () => import(/* webpackChunkName: "group-2" */ './views/Dashboard.vue');
 const Orders = () => import(/* webpackChunkName: "group-2" */ './components/Orders.vue');
+const Preferences = () => import(/* webpackChunkName: "group-2" */ './components/Preferences.vue');
+const Recommendations = () => import(/* webpackChunkName: "group-2" */ './components/Recommendations.vue');
 
 const Checkout = () => import(/* webpackChunkName: "group-3" */ './views/Checkout.vue');
-const Confirm = () => import(/* webpackChunkName: "group-3" */ './views/Confirm.vue');
-
-const Shop = () => import(/* webpackChunkName: "group-4" */ './views/Shop.vue');
+const Shop = () => import(/* webpackChunkName: "group-3" */ './views/Shop.vue');
+const Merchants = () => import(/* webpackChunkName: "group-3" */ './views/Merchants.vue');
 
 Vue.use(Router);
 
@@ -24,11 +25,6 @@ export default new Router({
             path: '/',
             name: 'home',
             component: Home,
-        },
-        {
-            path: '/confirm',
-            name: 'confirm',
-            component: Confirm,
         },
         {
             path: '/shop/category/:category',
@@ -44,6 +40,11 @@ export default new Router({
             path: '/shop',
             name: 'shop',
             component: Shop,
+        },
+        {
+            path: '/blog',
+            name: 'blog',
+            component: Blog,
         },
         {
             path: '/login',
@@ -71,13 +72,22 @@ export default new Router({
             children: [
                 {
                     path: '',
-                    name: 'overview',
-                    component: Orders,
+                    redirect: 'orders',
                 },
                 {
                     path: 'orders',
                     name: 'orders',
                     component: Orders,
+                },
+                {
+                    path: 'preferences',
+                    name: 'preferences',
+                    component: Preferences,
+                },
+                {
+                    path: 'recommendations',
+                    name: 'recommendations',
+                    component: Recommendations,
                 },
             ],
         },
