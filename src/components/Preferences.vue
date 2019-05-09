@@ -65,6 +65,16 @@
                 </div>
             </div>
         </div>
+
+        <h1 class="title is-5">Membership Status</h1>
+        <div class="box">
+            <h1 class="title is-4">Fresh San Jose Pro</h1>
+            <p><b>Billing Date:</b> 5th of every month</p>
+            <p><b>Paying With:</b> Visa x-5728</p>
+            <p><b>Shipping Weekly Boxes To:</b> Home, 1057 Harlan Drive, San Jose, CA 95129</p>
+            <br>
+            <p>Thanks for supporting your local community!</p>
+        </div>
     </div>
 </template>
 

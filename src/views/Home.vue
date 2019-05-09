@@ -107,6 +107,15 @@
                             </b-icon></a>
                         </div>
                     </div>
+                    <div class="column">
+                        <div class="step">
+                            <a href="https://www.youtube.com/channel/UC8z-N_l0SKSD0wpul2lWerw" class="has-text-normal"><b-icon
+                                pack="fab"
+                                icon="youtube"
+                                size="is-large">
+                            </b-icon></a>
+                        </div>
+                    </div>
                     <div class="column is-3"></div>
                 </div>
             </div>

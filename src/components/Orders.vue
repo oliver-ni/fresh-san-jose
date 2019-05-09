@@ -63,10 +63,10 @@
                                 {{ formatPrice(0.07 * getPrice(order.items)) }}
                             </p>
                             <p class="has-text-faded">
-                                $2.99
+                                Free
                             </p>
                             <p class="has-text-faded has-text-weight-bold">
-                                {{ formatPrice(1.07 * getPrice(order.items) + 2.99) }}
+                                {{ formatPrice(1.07 * getPrice(order.items)) }}
                             </p>
                             <br>
                             <p class="has-text-faded">Visa x-5728</p>
@@ -114,10 +114,10 @@
                                 {{ formatPrice(0.07 * getPrice(order.items)) }}
                             </p>
                             <p class="has-text-faded">
-                                $2.99
+                                Free
                             </p>
                             <p class="has-text-faded has-text-weight-bold">
-                                {{ formatPrice(1.07 * getPrice(order.items) + 2.99) }}
+                                {{ formatPrice(1.07 * getPrice(order.items)) }}
                             </p>
                             <br>
                             <p class="has-text-faded">Visa x-5728</p>
