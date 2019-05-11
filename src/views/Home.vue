@@ -51,6 +51,42 @@
         </section>
 
         <section class="section has-background-light">
+            <div class="container container-small">
+                <div class="columns is-vcentered is-variable is-8">
+                    <div class="column is-5">
+                        <div class="image"><img src="/Store.PNG"></div>
+                    </div>
+                    <div class="column">
+                        <h1 class="title has-text-centered-mobile">Fresh San Jose Store</h1>
+                        <p>Our store is a central hub where you can come to interact with the local community, pick up your orders any day, try samples of the several different fresh and seasonal produce as well as products on offer everyday, relax in a friendly environment, get some work done, or even just hang around. We have put a lot of work and effort into designing the store so that the environment is comfortable and the ambiance is just right. We want you to feel encouraged to make connections with others in the local community and calm when you visit our store. The Fresh San Jose Store is located at 1280 Johnson Avenue, San Jose, CA 95129 and is a very open and nice place to check out. Visit our store today!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section has-background">
+            <div class="container container-small">
+                <div class="columns is-vcentered is-variable is-8">
+                    <div class="column content">
+                        <h1 class="title has-text-centered-mobile">Fresh San Jose Pro</h1>
+                        <p>Become a Fresh San Jose Pro for $14.99 a month to enjoy several special benefits and help support the local community even more:</p>
+                        <ul>
+                            <li>Weekly boxes of featured produce and products from different local merchants that change from week to week depending on the season delivered straight to your door</li>
+                            <li>Free delivery on all of your orders</li>
+                            <li>Special recipes and inspiration for different foods delivered straight to your inbox</li>
+                            <li>Access to special and limited products</li>
+                            <li>Invitation to many unique and exceptional events at the Fresh San Jose Store.</li>
+                        </ul>
+                        <p>Become a Fresh San Jose Pro today! New Members will automatically get a free one month trial of becoming a Fresh San Jose Pro.</p>
+                    </div>
+                    <div class="column is-4">
+                        <div class="image"><img src="/Weekly Box.PNG"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section has-background-light">
             <div class="container container-small has-text-centered">
                 <h1 class="title">Our team and values</h1>
                 <div class="columns">
